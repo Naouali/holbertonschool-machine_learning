@@ -16,6 +16,9 @@ def shape(matrix):
 
 
 def add_array(arr1, arr2):
+    """
+    function to add arrays
+    """
     return [i + j for i, j in zip(arr1, arr2)]
 
 
