@@ -5,10 +5,13 @@ Poisson distribution
 
 
 class Poisson:
+    """
+    Poisson distribution class
+    """
     def __init__(self, data=None, lambtha=1.):
         if not data:
             self.lambtha = float(lambtha)
-            if self.lambtha < 0:
+            if self.lambtha <= 0:
                 raise ValueError("lambtha must be positive")
         else:
             if type(data) != list:
