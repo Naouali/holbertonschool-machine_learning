@@ -36,5 +36,5 @@ class Exponential:
         """
         if x < 0:
             return 0
-        e = 2.7182518285
+        e = 2.7182818285
         return 1 - (e ** (-1 * self.lambtha * x))
