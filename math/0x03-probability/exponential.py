@@ -29,3 +29,12 @@ class Exponential:
             return 0
         e = 2.7182818285
         return self.lambtha * (e ** (-1 * self.lambtha * x))
+
+    def cdf(self, x):
+        """
+        comulative function
+        """
+        if x < 0:
+            return 0
+        e = 2.7182518285
+        return 1 - (e ** (-1 * self.lambtha * x))
