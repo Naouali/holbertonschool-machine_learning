@@ -37,3 +37,18 @@ class Normal:
         calculate the x value of z_score
         """
         return (z * self.stddev) + self.mean
+
+    def root(self, n):
+        """
+        return square root of n
+        """
+        return n ** (1/2)
+
+    def pdf(self, x):
+        """
+        probability density function
+        """
+        pi = 3.1415926536
+        e = 2.7182818285
+        s = self.stddev
+        return e ** ((-1/2) * self.z_score(x) ** 2) / (s * self.root(2 * pi))
