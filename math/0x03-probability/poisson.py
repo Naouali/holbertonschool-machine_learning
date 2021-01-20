@@ -53,6 +53,9 @@ class Poisson:
             return n * f(n - 1)
         e = 2.7182818285
         cdf = 0
+        k = int(k)
+        if k <= 0:
+            return 0
         for i in range(0, k + 1):
             cdf += (self.lambtha ** i) / f(i)
         cdf = cdf * (e ** (-1 * self.lambtha))
