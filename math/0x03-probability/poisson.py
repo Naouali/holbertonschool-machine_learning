@@ -40,3 +40,20 @@ class Poisson:
             return 0
         p = (self.lambtha ** k) * (e ** (-1 * self.lambtha))
         return p / factorial(k)
+
+    def cdf(self, k):
+        """
+        probability comulative function
+        """
+        def f(n):
+            if n == 0:
+                return 1
+            if n == 1:
+                return 1
+            return n * f(n - 1)
+        e = 2.7182818285
+        cdf = 0
+        for i in range(0, k + 1):
+            cdf += (self.lambtha ** i) / f(i)
+        cdf = cdf * (e ** (-1 * self.lambtha))
+        return cdf
