@@ -9,8 +9,9 @@ class Exponential:
     Exponential class
     """
     def __init__(self, data=None, lambtha=1.):
-        if not data:
-            if lambtha <= 0:
+        if data is None:
+            self.lambtha = float(lambtha)
+            if self.lambtha <= 0:
                 raise ValueError("lambtha must be a positibe value")
             self.lambtha = float(lambtha)
         else:
