@@ -52,3 +52,21 @@ class Normal:
         e = 2.7182818285
         s = self.stddev
         return e ** ((-1/2) * self.z_score(x) ** 2) / (s * self.root(2 * pi))
+
+    def cdf(self, x):
+        """
+        comulative distribution function
+        """
+        return (1 + self.erf(self.z_score(x) / self.root(2))) / 2
+
+    def erf(self, x):
+        """
+        error
+        """
+        pi = 3.1415926536
+        one = x
+        two = (x ** 3) / 3
+        three = (x ** 5) / 10
+        four = (x ** 7) / 42
+        five = (x ** 9) / 216
+        return 2 * (one - two + three - four + five) / self.root(pi)
