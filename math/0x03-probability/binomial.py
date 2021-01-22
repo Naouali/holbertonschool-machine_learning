@@ -29,3 +29,23 @@ class Binomial:
             self.p = -1 * (variance / mean - 1)
             self.n = round(mean / self.p)
             self.p = mean / self.n
+
+    def pmf(self, k):
+        """
+        pmf of binomail
+        """
+        def factorial(n):
+            """
+            return factorial of n
+            """
+            if n == 0:
+                return 1
+            if n == 1:
+                return 1
+            return n * factorial(n - 1)
+        k = int(k)
+        if k < 0:
+            return 0
+        part1 = factorial(self.n) / (factorial(k) * (factorial(self.n - k)))
+        part2 = self.p ** k * ((1 - self.p) ** (self.n - k))
+        return part1 * part2
