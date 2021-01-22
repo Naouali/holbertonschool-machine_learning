@@ -49,3 +49,15 @@ class Binomial:
         part1 = factorial(self.n) / (factorial(k) * (factorial(self.n - k)))
         part2 = self.p ** k * ((1 - self.p) ** (self.n - k))
         return part1 * part2
+
+    def cdf(self, k):
+        """
+        cdf binomial
+        """
+        if k < 0:
+            return 0
+        k = int(k)
+        cdf = 0
+        for i in range(k + 1):
+            cdf += self.pmf(i)
+        return cdf
