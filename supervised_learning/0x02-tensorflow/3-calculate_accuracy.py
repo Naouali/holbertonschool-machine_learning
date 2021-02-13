@@ -12,4 +12,5 @@ def calculate_accuracy(y, y_pred):
     accuarcy function
     """
 
-    return y-y_pred.tf.mean()
+    return tf.reduce_mean(tf.equal(tf.argmax(y_pred, 1), tf.argmax(y, 1)))
+
