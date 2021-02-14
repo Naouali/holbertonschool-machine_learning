@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+train
+"""
 
 import tensorflow as tf
 calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
