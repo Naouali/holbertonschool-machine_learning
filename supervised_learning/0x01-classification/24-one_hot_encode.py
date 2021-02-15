@@ -12,7 +12,7 @@ def one_hot_encode(Y, classes):
     encode
     """
 
-    hot = np.zeros((classes, classes))
+    hot = np.zeros((Y.shape[0], classes))
     for i in Y:
         j = np.where(Y == i)
         hot[i][j] = 1
