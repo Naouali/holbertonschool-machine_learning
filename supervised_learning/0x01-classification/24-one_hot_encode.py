@@ -13,8 +13,7 @@ def one_hot_encode(Y, classes):
     """
 
     hot = np.zeros((classes, classes))
-    j = 0
     for i in Y:
+        j = np.where(Y == i)
         hot[i][j] = 1
-        j += 1
     return hot
