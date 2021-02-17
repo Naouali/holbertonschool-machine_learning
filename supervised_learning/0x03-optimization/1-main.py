@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 982c764c6b1edb6530c5d08930d5fd2f637ec485
 import numpy as np
 normalization_constants = __import__('0-norm_constants').normalization_constants
+normalize = __import__('1-normalize').normalize
 
 if __name__ == '__main__':
     np.random.seed(0)
@@ -13,6 +10,10 @@ if __name__ == '__main__':
     b = np.random.normal(2, 1, size=(100, 1))
     c = np.random.normal(-3, 10, size=(100, 1))
     X = np.concatenate((a, b, c), axis=1)
+    m, s = normalization_constants(X)
+    print(X[:10])
+    X = normalize(X, m, s)
+    print(X[:10])
     m, s = normalization_constants(X)
     print(m)
     print(s)
