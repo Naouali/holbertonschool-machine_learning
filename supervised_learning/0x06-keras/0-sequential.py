@@ -23,5 +23,3 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         ))
 
     return model
-
-
