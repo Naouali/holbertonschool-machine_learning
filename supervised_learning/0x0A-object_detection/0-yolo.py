@@ -13,7 +13,7 @@ class Yolo():
     """
 
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
-        self.model = K.models.load_model(model_path)
+        self.model = Keras.models.load_model(model_path)
         with open(classes_path, "r") as f:
             r = f.read().split("\n")[:-1]
         self.class_names = r
