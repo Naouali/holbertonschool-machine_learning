@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
+"""
+Predict
+"""
 
 
-""" contains a function to give the prediction of the model"""
-import tensorflow.keras as K
+import tensorflow.keras as Keras
 
 
 def predict(network, data, verbose=False):
-    """ return prediction of a model"""
+    """
+    model
+    """
     return network.predict(data, verbose=verbose)
