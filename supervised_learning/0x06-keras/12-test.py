@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
+"""
+test
+"""
 
 
-""" contains a function to test the model"""
-import tensorflow.keras as K
+import tensorflow.keras as Keras
 
 
 def test_model(network, data, labels, verbose=True):
-    """ tests a model"""
+    """
+    tests model
+    """
     return network.evaluate(data, labels, verbose=verbose)
