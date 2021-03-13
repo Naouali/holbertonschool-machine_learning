@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-train
+train model
 """
 
 import tensorflow as tf
@@ -21,7 +21,9 @@ def train(
         alpha,
         iterations,
         save_path="/tmp/model.ckpt"):
-    """ train funct"""
+    """
+    Train function
+    """
     x, y = create_placeholders(X_valid.shape[1], Y_valid.shape[1])
     y_pred = forward_prop(x, layer_sizes, activations)
     loss = calculate_loss(y, y_pred)
