@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
 """
-Keras sequatial
+Build model
 """
 
 
-import tensorflow as tf
-import tensorflow.keras as keras
+import tensorflow.keras as Keras
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """
-    build model
+    Build model
     """
-    model = keras.Sequential()
-    for i in range(1, len(layers)):
-        model.add(keras.layers.Dropout(1 - keep_prob))
-        model.add(keras.layers.Dense(
-            layers[i],
-            activations[i],
-            input_shape=nx,
-            kernel_regularizer=keras.regularizers.l2(lambtha),
-        ))
+    model = Keras.Sequential()
+    l2 = Keras.regularizers.l2(lambtha)
+    model.add(Keras.layers.Dense(
+        layers[0],
+        activation=activations[0],
+        input_shape=(nx,),
+        kernel_regularizer=l2))
 
+    for i in range(1, len(layers)):
+        model.add(Keras.layers.Dropout(1 - keep_prob))
+        model.add(
+            Keras.layers.Dense(
+                layers[i],
+                activation=activations[i],
+                kernel_regularizer=l2))
     return model
