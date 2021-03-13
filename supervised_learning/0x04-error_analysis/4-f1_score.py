@@ -12,6 +12,6 @@ def f1_score(confusion):
     """
     F1 score
     """
-    ppv = precision(confusion)
+    p = precision(confusion)
     tpr = sensitivity(confusion)
-    return 2 * ppv * tpr / (ppv + tpr)
+    return 2 * p * tpr / (p + tpr)
