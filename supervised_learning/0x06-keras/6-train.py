@@ -13,7 +13,6 @@ def train_model(network, data, labels, batch_size, epochs,
     """
     Train
     """
-    call = []
     if (early_stopping and validation_data):
         call = [Keras.call.EarlyStopping(
             monitor="val_loss", patience=patience)]
