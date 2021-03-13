@@ -19,5 +19,5 @@ def load_model(filename):
     """
     Load model
     """
-    model = K.models.load_model(filename)
+    model = Keras.models.load_model(filename)
     return model
