@@ -12,5 +12,5 @@ def l2_reg_cost(cost):
     L2 regularization
     """
     reg = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
-    l = cost + reg
-    return l
+    loss = cost + reg
+    return loss
