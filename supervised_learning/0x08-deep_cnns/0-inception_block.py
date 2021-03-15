@@ -55,10 +55,10 @@ def inception_block(A_prev, filters):
                                        )(A_prev)
 
     layer3 = Keras.layers.Conv2D(filters=FPP,
-                                    kernel_size=(1, 1),
-                                    padding='same',
-                                    activation='relu',
-                                    kernel_initializer=init,
+                                kernel_size=(1, 1),
+                                padding='same',
+                                activation='relu',
+                                kernel_initializer=init,
                                     )(layer3)
 
     output = Keras.layers.concatenate([layer, layer1,
