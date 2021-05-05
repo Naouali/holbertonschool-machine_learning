@@ -19,8 +19,9 @@ def one_hot_encode(Y, classes):
         return None
     if Y.max() >= classes:
         return None
-    hot = np.zeros((Y.shape[0], classes))
+    hot = np.zeros((classes, len(Y)))
+    count = -1
     for i in Y:
-        j = np.where(Y == i)
-        hot[i][j] = 1
+        count += 1
+        hot[i][count] = 1
     return hot
