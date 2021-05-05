@@ -12,4 +12,7 @@ def one_hot_decode(one_hot):
         return None
     if len(one_hot.shape) != 2:
         return None
-    return np.argmax(one_hot, axis=0)
+    data = []
+    for i in one_hot.T:
+        data.append(np.argmax(i))
+    return np.array(data)
