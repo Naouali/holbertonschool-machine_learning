@@ -17,6 +17,10 @@ def one_hot_encode(Y, classes):
         return None
     if classes < 0:
         return None
+    if type(classes) != int:
+        return None
+    if type(Y) != numpy.array:
+        return None
     if Y.max() >= classes:
         return None
     hot = np.zeros((classes, len(Y)))
