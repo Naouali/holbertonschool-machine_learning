@@ -139,14 +139,18 @@ class DeepNeuralNetwork:
                     print("Cost after {} iterations: {}".format(
                         i, cost
                     ))
-            if graph is True:
-                itr.append(i)
-                costs.append(cost)
-        plt.plot(itr, costs)
-        plt.title("Trainig Cost")
-        plt.xlabel("iteration")
-        plt.ylabel("cost")
-        plt.show()
+        if verbose is True:
+            cost = self.cost(Y, A)
+            itr.append(i)
+            costs.append(cost)
+            print("Cost after {} iterations {}".format(iterrations, cost))
+
+        if graph is True:
+            plt.plot(itr, costs)
+            plt.title("Trainig Cost")
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+            plt.show()
         return self.evaluate(X, Y)
 
     def save(self, filename):
