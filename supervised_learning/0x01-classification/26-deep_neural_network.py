@@ -154,7 +154,7 @@ class DeepNeuralNetwork:
         Saver model function
         input : filename
         """
-        if not filename.endswith(".pkl"):
+        if not (filename.endswith(".pkl")):
             filename = filename + ".pkl"
         with open(filename, 'wb') as f:
             pickle.dump(self, f)
@@ -168,6 +168,5 @@ class DeepNeuralNetwork:
             with open(filename, 'rb') as f:
                 model = pickle.load(f)
             return model
-        except:
+        except FileNotFoundError:
             return None
-
