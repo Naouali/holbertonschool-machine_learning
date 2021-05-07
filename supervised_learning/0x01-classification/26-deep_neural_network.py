@@ -111,6 +111,10 @@ class DeepNeuralNetwork:
 
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
+        """
+        Train deep neual network
+        return evaluation/prediciton
+        """
         it = []
         co = []
         if type(iterations) is not int:
