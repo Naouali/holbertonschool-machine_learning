@@ -110,11 +110,8 @@ class DeepNeuralNetwork:
             dZ = np.dot(
                 w["W" + str(i+1)].T, dZ) * (A * (1 - A))
 
-    def train(self, X, Y, iterations=5000, alpha=0.05,
-              verbose=True, graph=True, step=100):
-        """
-        train the model
-        """
+   it = []
+        co = []
         if type(iterations) is not int:
             raise TypeError("iterations must be an integer")
         if iterations < 0:
@@ -123,49 +120,52 @@ class DeepNeuralNetwork:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
-        if verbose is True and graph is True:
+        if (verbose is True and graph is False) or \
+                (verbose is False and graph is True):
             if type(step) is not int:
                 raise TypeError("step must be an integer")
-            if step < 0 and step > iterations:
+            if step <= 0 or step > iterations:
                 raise ValueError("step must be positive and <= iterations")
-        costs = []
-        itr = []
-        for i in range(iterations + 1):
-            A, A1 = self.forward_prop(X)
-            self.gradient_descent(Y, A1, alpha)
+
+        for i in range(0, iterations):
+            A, cache = self.forward_prop(X)
+            self.gradient_descent(Y, cache, alpha)
+            if (i == 0 or i % step == 0 or i == iterations):
+                cost = self.cost(Y, A)
+                it.append(i)
+                co.append(cost)
+                if verbose is True:
+                    print("Cost after {} iterations: {}".format(i, cost))
+        if verbose is True:
             cost = self.cost(Y, A)
-            if verbose is True:
-                if i == 0 or i == iterations + 1 or i % step == 0:
-                    print("Cost after {} iterations: {}".format(
-                        i, cost
-                    ))
-            if graph is True:
-                itr.append(i)
-                costs.append(cost)
-        plt.plot(itr, costs)
-        plt.title("Trainig Cost")
-        plt.xlabel("iteration")
-        plt.ylabel("cost")
-        plt.show()
+            it.append(i)
+            co.append(cost)
+            print("Cost after {} iterations: {}".format(iterations, cost))
+        if graph is True:
+            plt.plot(it, co)
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+            plt.title("Training Cost")
+            plt.show()
         return self.evaluate(X, Y)
 
     def save(self, filename):
-        """
-        Function to save a model
+        """ 
+        Saves the model in pickle format
         """
         if not(filename.endswith(".pkl")):
             filename = filename + ".pkl"
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
+        with open(filename, 'wb') as fileObject:
+            pickle.dump(self, fileObject)
 
     @staticmethod
     def load(filename):
         """
-        function to load a pretrained parameters
+        Loads a pretrained model
         """
         try:
-            with open(filename, "rb") as f:
-                model = pickle.load(f)
-            return model
+            with open(filename, 'rb') as fileObject:
+                saved = pickle.load(fileObject)
+            return saved
         except FileNotFoundError:
             return None
