@@ -123,55 +123,49 @@ class DeepNeuralNetwork:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
-        if (verbose is True and graph is False) or (verbose is False and graph is True):
+        if verbose is True and graph is True:
             if type(step) is not int:
                 raise TypeError("step must be an integer")
-            if step < 0 or step > iterations:
+            if step < 0 and step > iterations:
                 raise ValueError("step must be positive and <= iterations")
         costs = []
         itr = []
         for i in range(iterations + 1):
             A, A1 = self.forward_prop(X)
             self.gradient_descent(Y, A1, alpha)
-            if (i == 0 or i % step == 0 or i == iterations):
-                cost = self.cost(Y, A)
-                itr.append(i)
-                costs.append(cost)
-                if verbose is True:
+            cost = self.cost(Y, A)
+            if verbose is True:
+                if i == 0 or i == iterations + 1 or i % step == 0:
                     print("Cost after {} iterations: {}".format(
                         i, cost
                     ))
-        if verbose is True:
-            cost = self.cost(Y, A)
-            itr.append(i)
-            costs.append(cost)
-            print("Cost after {} iterations {}".format(iterrations, cost))
-
-        if graph is True:
-            plt.plot(itr, costs)
-            plt.title("Trainig Cost")
-            plt.xlabel("iteration")
-            plt.ylabel("cost")
-            plt.show()
+            if graph is True:
+                itr.append(i)
+                costs.append(cost)
+        plt.plot(itr, costs)
+        plt.title("Trainig Cost")
+        plt.xlabel("iteration")
+        plt.ylabel("cost")
+        plt.show()
         return self.evaluate(X, Y)
 
     def save(self, filename):
         """
-        Saver model function
-        input : filename
+        Function to save a model
         """
-        if not (filename.endswith(".pkl")):
+        if not(filename.endswith(".pkl")):
             filename = filename + ".pkl"
-        with open(filename, 'wb') as f:
+        with open(filename, "wb") as f:
             pickle.dump(self, f)
 
     @staticmethod
-    def load(filename):
+    def load(filname):
         """
-        Function to load a pretrained model
+        function to load a pretrained parameters
         """
         try:
-            with open(filename, 'rb') as f:
+
+            with open(filename, "rb") as f:
                 model = pickle.load(f)
             return model
         except FileNotFoundError:
