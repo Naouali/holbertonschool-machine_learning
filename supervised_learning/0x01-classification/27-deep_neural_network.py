@@ -58,15 +58,6 @@ class DeepNeuralNetwork:
         weights getter
         """
         return self.__weights
-    
-    @staticmethod
-    def softmax(n):
-        """
-        Softmax activation function
-        """
-        t = np.exp(n)
-        s = np.sum(n, axis= 0, keepdims=True)
-        return t / s 
 
     def forward_prop(self, X):
         """
@@ -81,7 +72,8 @@ class DeepNeuralNetwork:
             if i < self.__L - 1:
                 self.__cache["A" + str(i + 1)] = 1 / (1 + np.exp(-z))
             else:
-                self.__cache["A" + str(i + 1)] = np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True)
+                self.__cache["A" + str(i + 1)] = np.exp(z) / \
+                    np.sum(np.exp(z), axis=0, keepdims=True)
         return self.__cache["A" + str(self.__L)], self.__cache
 
     def cost(self, Y, A):
