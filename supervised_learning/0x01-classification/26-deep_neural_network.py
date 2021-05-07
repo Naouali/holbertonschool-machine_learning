@@ -159,12 +159,11 @@ class DeepNeuralNetwork:
             pickle.dump(self, f)
 
     @staticmethod
-    def load(filname):
+    def load(filename):
         """
         function to load a pretrained parameters
         """
         try:
-
             with open(filename, "rb") as f:
                 model = pickle.load(f)
             return model
