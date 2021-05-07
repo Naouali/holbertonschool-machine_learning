@@ -123,19 +123,21 @@ class DeepNeuralNetwork:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
-        if verbose is True or graph is True:
+        if (verbose is True and graph is False) or (verbose is False and graph is True):
             if type(step) is not int:
                 raise TypeError("step must be an integer")
-            if step < 0 and step > iterations:
+            if step < 0 or step > iterations:
                 raise ValueError("step must be positive and <= iterations")
         costs = []
         itr = []
         for i in range(iterations + 1):
             A, A1 = self.forward_prop(X)
             self.gradient_descent(Y, A1, alpha)
-            cost = self.cost(Y, A)
-            if verbose is True:
-                if i == 0 or i == iterations + 1 or i % step == 0:
+            if (i == 0 or i % step == 0 or i == iterations):
+                cost = self.cost(Y, A)
+                itr.append(i)
+                costs.append(cost)
+                if verbose is True:
                     print("Cost after {} iterations: {}".format(
                         i, cost
                     ))
