@@ -107,10 +107,11 @@ class DeepNeuralNetwork:
                 self.__weights["W" + str(i+1)] - (alpha * dW)
             self.__weights["b" + str(i+1)] = \
                 self.__weights["b" + str(i+1)] - (alpha * db)
-            dZ = np.dot(
-                w["W" + str(i+1)].T, dZ) * (A * (1 - A))
+            dZ = np.dot(w["W" + str(i+1)].T, dZ) * (A * (1 - A))
 
-   it = []
+    def train(self, X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100):
+        it = []
         co = []
         if type(iterations) is not int:
             raise TypeError("iterations must be an integer")
@@ -150,7 +151,7 @@ class DeepNeuralNetwork:
         return self.evaluate(X, Y)
 
     def save(self, filename):
-        """ 
+        """
         Saves the model in pickle format
         """
         if not(filename.endswith(".pkl")):
