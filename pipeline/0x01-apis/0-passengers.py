@@ -22,7 +22,7 @@ def availableShips(passengerCount):
                     availale.append(v['name'])
             except ValueError:
                 continue
-        url = ships = rq.get(url).json()['next']
+        url = rq.get(url).json()['next']
         if url is None:
             break
     return availale
