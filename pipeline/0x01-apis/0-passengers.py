@@ -12,12 +12,17 @@ def availableShips(passengerCount):
     Return: available ships
     """
     url = "https://swapi-api.hbtn.io/api/starships"
-    ships = rq.get(url).json()
     availale = []
-    for i in range(100):
-        try:
-            if int(ships['results'][i]["cargo_capacity"]) >= passengerCount:
-                availale.append(ships['results'][i]['name'])
-        except IndexError:
+    while True:
+        ships = rq.get(url).json()
+        for v in ships['results']:
+            try:
+                capacity = int(v['passengers'].replace(",", ""))
+                if capacity >= passengerCount:
+                    availale.append(v['name'])
+            except ValueError:
+                continue
+        url = ships = rq.get(url).json()['next']
+        if url is None:
             break
     return availale
