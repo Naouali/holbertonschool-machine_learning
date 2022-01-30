@@ -1,8 +1,13 @@
 -- CREATE A TRIGGER TO DETECT CHANGES ON A MAIL ADRESS
 
+DELIMITER $$
 CREATE TRIGGER email_check
 BEFORE UPDATE
 ON users
 FOR EACH ROW
-UPDATE users SET valid_email = 0
-WHERE OLD.email <> NEW.email;
+BEGIN
+IF STRCMP(OLD.email, NEW.email) <> 0 THEN
+SET NEW.valid_email = 0;
+END IF;
+END$$
+DELIMITER ;
