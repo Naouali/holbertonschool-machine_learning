@@ -10,7 +10,7 @@ def matrix_transpose(matrix):
     Output: matrix transposed
     """
     transposed = []
-    for x in matrix:
+    for x in matrix[0]:
         transposed.append([])
 
     for i in range(len(matrix[0])):
