@@ -1,2 +1,0 @@
-// deletes all documents w
-db.school.deleteMany({name:"Holberton school"})

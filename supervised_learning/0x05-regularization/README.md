@@ -1,1 +1,0 @@
-regulqrization in neural networks

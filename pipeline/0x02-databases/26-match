@@ -1,2 +1,0 @@
-// list all colelction mongo db
-db.school.find({name:"Holberton school"})
