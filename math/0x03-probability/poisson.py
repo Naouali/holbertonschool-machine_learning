@@ -8,6 +8,8 @@ class Poisson:
     """
     Poisson Class
     """
+    e = 2.7182818285
+
     def __init__(self, data=None, lambtha=1.):
         """_summary_
 
@@ -28,3 +30,21 @@ class Poisson:
                 raise ValueError("data must contain multiple values")
             else:
                 self.lambtha = sum(self.data) / len(self.data)
+
+    def factorial(self, n):
+        """
+        Return the factorial of n
+        """
+
+        fact = 1
+        while n > 0:
+            fact *= n
+            n = n - 1
+        return fact
+
+    def pmf(self, k):
+        """
+        Return the probability of k successions
+        """
+        p = (self.e ** -self.lambtha) * (self.lambtha ** k) / self.factorial(k)
+        return p
