@@ -46,5 +46,12 @@ class Poisson:
         """
         Return the probability of k successions
         """
+        if type(k) != int:
+            try:
+                k = float(k)
+            except:
+                raise TypeError("K should be an integer")
+        if k < 0:
+            return 0
         p = (self.e ** -self.lambtha) * (self.lambtha ** k) / self.factorial(k)
         return p
