@@ -11,11 +11,6 @@ class Poisson:
         Args:
             data (List, optional): _description_. Defaults to None.
             lambtha (float, optional): _description_. Defaults to 1..
-
-        Raises:
-            ValueError: _description_
-            TypeError: _description_
-            ValueError: _description_
         """
         self.data = data
         self.lambtha = float(lambtha)
