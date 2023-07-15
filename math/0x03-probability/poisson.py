@@ -5,6 +5,9 @@ Python program to generate the poisson distribution
 
 
 class Poisson:
+    """
+    Poisson Class
+    """
     def __init__(self, data=None, lambtha=1.):
         """_summary_
 
