@@ -7,6 +7,17 @@ Python program to generate the poisson distribution
     
 class Poisson:
     def __init__(self, data=None, lambtha=1.):
+        """_summary_
+
+        Args:
+            data (List, optional): _description_. Defaults to None.
+            lambtha (float, optional): _description_. Defaults to 1..
+
+        Raises:
+            ValueError: _description_
+            TypeError: _description_
+            ValueError: _description_
+        """
             
         self.data = data
         self.lambtha = float(lambtha)
@@ -21,4 +32,3 @@ class Poisson:
                 raise ValueError("data must contain multiple values")
             else:   
                 self.lambtha = sum(self.data) / len(self.data)
-                
